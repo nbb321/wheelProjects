@@ -1,41 +1,33 @@
 <template>
-  <div class="home">
-    <carlist />
-    <letters />
-  </div>
+    <div class="home">
+        <Wheel></Wheel>
+        <LeftList></LeftList>
+        <LeftMosk></LeftMosk>
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import {mapState,mapMutations,mapActions} from 'vuex'
-import carlist from '@/components/carlist.vue'
-import letters from "@/components/letters.vue"
- // @ is an alias to /src
+import Vue from 'vue';
+import Wheel from '@/components/wheel.vue';
+import LeftList from '@/components/leftList.vue';
+import LeftMosk from '@/components/leftMosk.vue';
 
-@Component({
-  components: {
-    carlist,
-    letters
-  },
-  methods: {
-    
-  },
-  mounted() {
-    
-  },
-  computed:{
-    
-  }
-})
-
-export default class Home extends Vue {
-  
-}
+export default Vue.extend({
+    name: 'home',
+    components:{
+        Wheel,
+        LeftList,
+        LeftMosk
+    },
+    mounted(){
+        this.$store.dispatch('wheel/getHome');
+    }
+});
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
 .home{
     width:100%;
     height:100%;
 }
 </style>
-
