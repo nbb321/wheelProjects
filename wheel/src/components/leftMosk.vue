@@ -2,7 +2,7 @@
     <div class="mosk" v-if="leftFlag">
         <div class="leftMain" v-for="(item,index) in carsDate" 
         :key="index">
-            <p>{{item.GroupName}}</p>
+            <p @click="back">{{item.GroupName}}</p>
             <div class="mainBox">
                 <div class="left" v-for="items in item.GroupList" 
                 :key="items.SerialID">
@@ -28,6 +28,11 @@ export default Vue.extend ({
             carsDate:state=>state.wheel.carsDate,
             leftFlag:state=>state.wheel.leftFlag
         })
+    },
+    methods:{
+        back(){
+           this.$store.commit("wheel/changeLeft", false);
+        }
     }
 })
 </script>

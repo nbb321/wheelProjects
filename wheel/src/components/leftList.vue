@@ -2,7 +2,7 @@
     <ul class="list">
         <li data-hover="hover">#</li>
         <li v-for="(item,index) in data" 
-        :key="index" data-hover="hover" @click="bind(item.value)">{{item.value}}</li>
+        :key="index" data-hover="hover" @click="bind(item.value,index)">{{item.value}}</li>
     </ul>
 </template>
 
@@ -18,9 +18,11 @@ export default Vue.extend({
         })
     },
     methods:{
-        bind(val){
-            console.log(1)
-            this.$store.commit('wheel/changeVal',val)
+        bind(val,index){
+            this.$store.commit('wheel/changeIndex',{
+                val,
+                index
+            });
         }
     }
 })

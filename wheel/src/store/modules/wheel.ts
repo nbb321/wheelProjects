@@ -5,7 +5,8 @@ const state = {
     list:[],
     data:[],
     leftFlag:false,
-    val:'A'
+    val:'A',
+    index:0
 };
 
 const mutations = {
@@ -26,7 +27,6 @@ const mutations = {
                 }
             })
         })
-        console.log('state.data...',state.data)
         return state.data;
     },
     //侧边栏
@@ -37,8 +37,11 @@ const mutations = {
     upLeft(state:any,payload:any){
         return state.carsDate = payload;
     },
-    changeVal(state:any,payload:any){
-        return state.val = payload;
+    changeIndex(state:any,payload:any){
+         state.val = payload.val;
+         state.index = payload.index;
+         return state;
+        
     }
 };
 
@@ -46,14 +49,14 @@ const actions = {
     //首页所有汽车
     async getHome({commit}:any,payload:any ) {
         let data = await wheel();
-        console.log('data...',data.data)
+        // console.log('data...',data.data)
         commit('upCars',data.data)
     },
     //侧边栏
     async getNav({commit}:any,payload:any){
-        console.log('payload',payload)
+        // console.log('payload',payload)
         let data = await leftNav(payload);
-        console.log('侧边栏...',data)
+        // console.log('侧边栏...',data)
         commit('upLeft',data.data)
     }
 };
