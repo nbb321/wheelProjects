@@ -49,6 +49,7 @@ export default Vue.extend ({
     z-index: 100;
     height: 100%;
     box-shadow: 0 0 0.5rem #eee;
+    overflow-y: scroll;
     .leftMain{
         width:100%;
         display: flex;
