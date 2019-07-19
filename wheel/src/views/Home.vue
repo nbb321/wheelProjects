@@ -1,57 +1,33 @@
 <template>
-  <div class="home">
-    <button @click="clickShow">点击</button>
-      <div v-if="visible" id="lefts" :class="visible===true?'active':''">
-        <sidebarData :visible="visible" :sideList="sideList"></sidebarData>
-      </div>
+    <div class="home">
+        <Wheel></Wheel>
+        <LeftList></LeftList>
+        <LeftMosk></LeftMosk>
     </div>
 </template>
 
 <script lang="ts">
-import sidebarData from "@/components/sidebarData/sidebarData.vue"
 import Vue from 'vue';
-import {mapActions,mapState} from "vuex";
-import { Drawer, Button } from 'antd';
+import Wheel from '@/components/wheel.vue';
+import LeftList from '@/components/leftList.vue';
+import LeftMosk from '@/components/leftMosk.vue';
+
 export default Vue.extend({
-  data(){
-    return{
-       visible: false
+    name: 'home',
+    components:{
+        Wheel,
+        LeftList,
+        LeftMosk
+    },
+    mounted(){
+        this.$store.dispatch('wheel/getHome');
     }
-  },
-  created(){
-    let obj={
-      MasterID:9,
-      ids:"_156319"
-    }
-    this.getDatas(obj)
-  },
-  computed:{
-    ...mapState(["sideList"])
-  },
-  components: {
-    sidebarData
-  },
-  methods:{
-     ...mapActions({
-       getDatas:"getDatas"
-    }),
-    clickShow(){
-      this.visible=true
-    }
-    // showDrawer(){
-    //     this.visible=true
-    // },
-    // onClose(){
-    //  this.visible=false
-    // }
-  }
 });
 </script>
-<style lang="scss">
-.active{
 
-    animation: all 1s;
+<style lang="scss" scoped>
+.home{
+    width:100%;
+    height:100%;
 }
-
 </style>
-
